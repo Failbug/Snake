@@ -1,9 +1,11 @@
-import os
+''' Created by @Failbug - 30.01.2019 '''
+
+
 import time
 import random
 import turtle
 
-
+# Speed of the snake
 delay = 0.05
 
 # Score
