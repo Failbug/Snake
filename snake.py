@@ -84,6 +84,23 @@ def move():
         x = head.xcor()
         head.setx(x + 20)
 
+
+def restart():
+    time.sleep(1)
+    head.goto(0, 0)
+    head.direction = "stop"
+
+    # Hide the segments
+    for segment in segments:
+        segment.goto(1000, 1000)
+
+    # Clear the segments list
+    segments.clear()
+    
+    # Update the score display
+    pen.clear()
+    pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=("Courier", 12, "normal"))
+
         
 
 # Keyboard bindings
@@ -100,28 +117,9 @@ while True:
 
     # Check for a collision with the border
     if head.xcor() >280 or head.xcor() <-280 or head.ycor() >280 or head.ycor() <-280:
-        time.sleep(1)
-        head.goto(0, 0)
-        head.direction = "stop"
-
-        # Hide the segments
-        for segment in segments:
-            segment.goto(1000, 1000)
-
-
-        # Clear the segments list
-        segments.clear()
-
-        # Reset the score
-        score = 0
-
-        # Reset the delay
-        delay = 0.05
-
-        # Update the score display
-        pen.clear()
-        pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=("Courier", 12, "normal"))
-
+       score = 0
+       restart()
+       delay = 0.05
 
     # Check for a collision with the food
     if head.distance(food) < 20:
@@ -164,31 +162,14 @@ while True:
 
     move()
 
+
     # Check for head collison with the body segment
     for segment in segments:
         if segment.distance(head) < 20:
-            time.sleep(1)
-            head.goto(0, 0)
-            head.direction = "stop"
-
-            # Hide the segments
-            for segment in segments:
-                segment.goto(1000, 1000)
-
-            # Clear the segments list
-            segments.clear()            
-            
-            # Reset the score
             score = 0
-
-            # Reset the delay
             delay = 0.05
-
-            # Update the score display
-            pen.clear()
-            pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=("Courier", 12, "normal"))
-
-
+            restart()
+            
 
     time.sleep(delay)
 
