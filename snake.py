@@ -1,4 +1,4 @@
-''' Created by @Failbug - 30.01.2019 '''
+''' Created by @Failbug '''
 
 
 import time
@@ -100,7 +100,6 @@ def restart():
     # Update the score display
     pen.clear()
     pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=("Courier", 12, "normal"))
-
         
 
 # Keyboard bindings
@@ -128,11 +127,14 @@ while True:
         y = random.randint(-280, 280)
         food.goto(x, y)
 
+        # List of colors used as segments
+        colors = ["#80E9FA", "#71DECF", "#89F5C8", "#71DE92", "#80FA82"]
+
         # Add a segment
         new_segment = turtle.Turtle()
         new_segment.speed(0)
         new_segment.shape("square")
-        new_segment.color("grey")
+        new_segment.color(random.choice(colors))
         new_segment.penup()
         segments.append(new_segment)
 
@@ -169,7 +171,6 @@ while True:
             score = 0
             delay = 0.05
             restart()
-            
 
     time.sleep(delay)
 
