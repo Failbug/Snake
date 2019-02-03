@@ -4,6 +4,7 @@
 import time
 import random
 import turtle
+import itertools
 
 # Speed of the snake
 delay = 0.05
@@ -109,6 +110,10 @@ window.onkeypress(go_down, "Down")
 window.onkeypress(go_left, "Left")
 window.onkeypress(go_right, "Right")
 
+# List of colors used as segments
+colors = ["#80E9FA", "#71DECF", "#89F5C8", "#71DE92", "#80FA82"]
+my_cycle = itertools.cycle(colors)
+
 
 # Main game loop
 while True:
@@ -127,14 +132,11 @@ while True:
         y = random.randint(-280, 280)
         food.goto(x, y)
 
-        # List of colors used as segments
-        colors = ["#80E9FA", "#71DECF", "#89F5C8", "#71DE92", "#80FA82"]
-
         # Add a segment
         new_segment = turtle.Turtle()
         new_segment.speed(0)
         new_segment.shape("square")
-        new_segment.color(random.choice(colors))
+        new_segment.color(next(my_cycle))
         new_segment.penup()
         segments.append(new_segment)
 
